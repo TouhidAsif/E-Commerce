@@ -1,6 +1,6 @@
  <?php 
  $filepath = realpath(dirname(__FILE__));
-include ($filepath.'/../config/Config.php');
+ include ($filepath.'/../config/Config.php');
 ?>
 <?php
 Class Database{
@@ -8,7 +8,6 @@ Class Database{
  public $user   = DB_USER;
  public $pass   = DB_PASS;
  public $dbname = DB_NAME;
- 
  
  public $link;
  public $error;
@@ -26,7 +25,6 @@ private function connectDB(){
  }
  }
  
-// Select or Read data
 public function select($query){
   $result = $this->link->query($query) or 
    die($this->link->error.__LINE__);
@@ -37,7 +35,6 @@ public function select($query){
   }
  }
  
-// Insert data
 public function insert($query){
  $insert_row = $this->link->query($query) or 
    die($this->link->error.__LINE__);
@@ -48,7 +45,6 @@ public function insert($query){
   }
  }
   
-// Update data
  public function update($query){
  $update_row = $this->link->query($query) or 
    die($this->link->error.__LINE__);
@@ -59,7 +55,6 @@ public function insert($query){
   }
  }
   
-// Delete data
  public function delete($query){
  $delete_row = $this->link->query($query) or 
    die($this->link->error.__LINE__);

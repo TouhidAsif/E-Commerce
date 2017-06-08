@@ -1,6 +1,6 @@
  <?php 
          
-           $filepath = realpath(dirname(__FILE__));
+        $filepath = realpath(dirname(__FILE__));
         include_once ($filepath.'/../lib/Database.php');
         include_once ($filepath.'/../helpers/Format.php');
 ?>
@@ -36,6 +36,7 @@ class Brand{
             }
         }
     }
+    
     public function getAllBrand(){
         $query = "select * from tbl_brand order by brandId desc";
         $result = $this->db->select($query);
@@ -48,7 +49,6 @@ class Brand{
         $result = $this->db->select($query);
         return $result;
     }
-    
     
     public function brandUpdate($brandName,$id){
         $brandName = $this->fm->validation($brandName);

@@ -23,13 +23,15 @@ img{max-width:100%;}
 /*end reset*/
 body{
 	font-family:Arial, Helvetica, sans-serif;
-	background:url(../images/body_bg3.jpg);
+	background:url(../images/slider2.jpg);
 }
+.success{font-size: 15px;color: green}
+.error{font-size: 15px;color: red}
 .wrap{
-	width:78%;
+	width:90%;
 	margin:0 auto;
 	padding:0 1%;
-	background:#FFF;
+	background:#ffe33d;
 }
 .header{
 	background:#FFF;
@@ -39,13 +41,13 @@ body{
 }
 .logo{
 	float:left;
-	width:33%;
+	width:20%;
 }
 /**** Header Top Right ****/
 .header_top_right{
-	float:left;
-	width:67%;
-	margin-top:35px;
+	float:right;
+	width:32%;
+	margin-top:65px;
 }
 .search_box{
 	float:left;
@@ -192,7 +194,7 @@ input[type="number"] {
 }
 .register_account form input[type="text"],.register_account form select{
 	font-size:12px;
-	color:#B3B1B1;
+	color:#444;
 	padding:8px;
 	outline:none;
 	margin:5px 0;
@@ -687,7 +689,7 @@ p.note{
 }
 .images_1_of_4 .button a:hover{
      color:#70389C;
-     background: #E8E8E8;
+     background: #333;
 }
 .images_1_of_4 .button span img{
 	position:absolute;
@@ -727,7 +729,7 @@ p.note{
     clear:both;
 }
 .group {
-    zoom:1;
+    zoom:;
 }
 .col_1_of_4{
 	display: block;
@@ -1390,12 +1392,17 @@ p.note{
   border: 1px solid #ddd;
   overflow: hidden;
   padding: 10px;
+
+    
 }
 .cartpage h2 {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
   font-size: 30px;
-  margin-bottom: 20px;
+  margin-bottom: 35px;
   width: 141px;
+  color: coral;
+    text-align: center;
+   
 }
 .tblone {
   border: 1px solid #fff;
@@ -1706,6 +1713,10 @@ p.terms {
      .rightsidebar {
      	margin-left:0;
      }
+   .rightsidebar.span_3_of_1 > ul li:hover {
+  padding-left: 5px;
+}
+    .rightsidebar.span_3_of_1 > ul li{transition: .5s;}
      .span_3_of_1 li a {
      	font-size:1em;
      	padding: 0.42em 3%;
@@ -1713,6 +1724,7 @@ p.terms {
      }
      .span_3_of_1 li a:hover {
 		background: url(../images/drop_arrow-hover.png) no-repeat 5px 15px;
+         
 	 }
     .available li {
     	padding:1.5% 1%;
@@ -2369,6 +2381,7 @@ p.terms {
 .login_panel button{
 	font-size:15px;
 }
+     
 		
   /*** Preview ***/
  .grid {

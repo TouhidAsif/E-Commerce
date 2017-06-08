@@ -1,22 +1,38 @@
 <?php include 'inc/header.php';?>
-
-
+ 
 <?php
 
-if(!isset($_GET['proid']) || isset($_GET['proid']) == NULL){
-    echo "<script>window.location = '404.php';</script>";
-}
-else{
+if(!isset($_GET['proid']) || $_GET['proid'] == NULL){
+    echo"<script>window.location = '404.php';</script>";
+}else{
     $id = $_GET['proid'];
 }
    
 
- if($_SERVER['REQUEST_METHOD'] == 'POST'){
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])){
      $quantity =  $_POST['quantity'];
      
      $addCart = $ct->addToCart($quantity,$id);
  }
 ?>
+ <?php  
+ 
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['compare'])){
+    $productId =  $_POST['productId'];
+     $insertCom = $pd->insertCompareData($productId,$cmrId);
+ }
+?>
+  <?php  
+ 
+ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['wlist'])){
+   
+     $saveWlist = $pd->saveWlistData($id,$cmrId);
+ }
+?>
+   
+<style>
+    .mybutton{width: 100px;margin-left: 50px;float: left}
+</style>
     
 
  <div class="main">
@@ -40,7 +56,7 @@ else{
 					<h2><?php echo $result['productName'];?> </h2>
 					 				
 					<div class="price">
-						<p>Price: <span>$<?php echo $result['price'];?></span></p>
+						<p>Price: <span><?php echo $result['price'];?></span></p>
 						<p>Category: <span><?php echo $result['catName'];?></span></p>
 						<p>Brand:<span><?php echo $result['brandName'];?></span></p>
 					</div>
@@ -58,6 +74,36 @@ else{
                         
                         ?>
                     </span>
+                     <?php
+                        if(isset($insertCom)){
+                            echo $insertCom;
+                        }
+                         if(isset($saveWlist)){
+                            echo $saveWlist;
+                        }
+                        
+                        ?>
+                <?php
+                    $login = Session::get("cusLogin");
+                  if($login == true){?>
+                    
+                <div class="add-cart">
+                <div class="mybutton">
+					<form action="" method="post">
+					<input type="hidden" class="buyfield" name="productId" value="<?php echo $result['productId'];?>"/>
+						<input type="submit" class="buysubmit" name="compare" value="Add to Compare"/>
+					</form>	
+                    </div>
+                    
+					<div class="mybutton">
+					<form action="" method="post">
+						<input type="submit" class="buysubmit" name="wlist" value="Save to List"/>
+					</form>	
+                    </div>		
+				</div>
+                   <?php } ?>
+                    
+               
                     
 			</div>
 			<div class="product-desc">
@@ -69,18 +115,17 @@ else{
 				<div class="rightsidebar span_3_of_1">
 					<h2>CATEGORIES</h2>
 					<ul>
-				      <li><a href="productbycat.php">Mobile Phones</a></li>
-				      <li><a href="productbycat.php">Desktop</a></li>
-				      <li><a href="productbycat.php">Laptop</a></li>
-				      <li><a href="productbycat.php">Accessories</a></li>
-				      <li><a href="productbycat.php#">Software</a></li>
-					   <li><a href="productbycat.php">Sports & Fitness</a></li>
-					   <li><a href="productbycat.php">Footwear</a></li>
-					   <li><a href="productbycat.php">Jewellery</a></li>
-					   <li><a href="productbycat.php">Clothing</a></li>
-					   <li><a href="productbycat.php">Home Decor & Kitchen</a></li>
-					   <li><a href="productbycat.php">Beauty & Healthcare</a></li>
-					   <li><a href="productbycat.php">Toys, Kids & Babies</a></li>
+                  <?php
+                        $getCat = $cat->getAllCat();
+                        if($getCat){
+                            while($result = $getCat->fetch_assoc()){
+                                
+                        
+                    ?>
+                        
+				      <li><a href="productbycat.php?catId=<?php echo $result['catId'];?>"><?php echo $result['catName'];?></a></li>
+				      
+				       <?php } }?>
     				</ul>
     	
  				</div>

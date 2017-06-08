@@ -231,7 +231,121 @@ class Product{
           return $result;
     }
      
+    public function latestFromGibson(){
+         $query = "select * from tbl_product where brandId='1' order by productId desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+        
+    }
+       public function latestFromBoss(){
+         $query = "select * from tbl_product where brandId='2' order by productId desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+        
+    }
+       public function latestFromYamaha(){
+         $query = "select * from tbl_product where brandId='7' order by productId desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+        
+    }
+       public function latestFromRoland(){
+         $query = "select * from tbl_product where brandId='6' order by productId desc limit 1";
+        $result = $this->db->select($query);
+        return $result;
+        
+    }
+    public function productByCat($id){
+        $catId       = mysqli_real_escape_string($this->db->link, $id);
+         $query = "select * from tbl_product where catId = '$catId'";
+        $result = $this->db->select($query);
+        return $result;
+    }
     
+    public function insertCompareData($cmprid,$cmrId){
+         $cmrId       = mysqli_real_escape_string($this->db->link, $cmrId);
+         $productId       = mysqli_real_escape_string($this->db->link, $cmprid);
+        
+        $compquery = "select * from tbl_compare  where cmrId='$cmrId' and productId ='$productId'";
+         $chek = $this->db->select($compquery);
+        if($chek){
+             $msg = "<span class='error'>Already added!</span>";
+            return $msg;
+        }
+            $query = "select * from tbl_product  where productId='$productId'";
+            $result = $this->db->select($query)->fetch_assoc();
+                if($result){
+                    
+                        $productId = $result['productId'];
+                        $productName = $result['productName'];
+                        $price = $result['price'];
+                        $image = $result['image'];
+
+                    $query = "insert into tbl_compare(cmrId,productId,productName,price,image) values('$cmrId','$productId','$productName','$price','$image')";
+                      $inserted_row = $this->db->insert($query);
+                    if($inserted_row){
+                                $msg = "<span class='success'>Added ! check to compare page</span>";
+                                       return $msg;
+                    }           else{
+                                    $msg = "<span class='error'>Not added</span>";
+                                    return $msg;
+                                }
+                        
+                            }
+    }
     
+    public function getComparedData($cmrId){
+        $query = "select * from tbl_compare  where cmrId='$cmrId' order by id desc";
+        $result = $this->db->select($query);
+        return $result; 
+        
+    }
+    
+    public function delCompareData($cmrId){
+        $query = "delete from tbl_compare where cmrId = '$cmrId'";
+         $deldata = $this->db->delete($query);
+    }
+    
+    public function saveWlistData($id,$cmrId){
+           $compquery = "select * from tbl_wlist  where cmrId='$cmrId' and productId ='$id'";
+         $chek = $this->db->select($compquery);
+        if($chek){
+             $msg = "<span class='error'>Already added!</span>";
+            return $msg;
+        }
+        
+         $pquery = "select * from tbl_product  where productId='$id'";
+         $result = $this->db->select($pquery)->fetch_assoc();
+            if($result){
+                
+                    $productId = $result['productId'];
+                    $productName = $result['productName'];
+                    $price = $result['price'];
+                    $image = $result['image'];
+
+                $query = "insert into tbl_wlist(cmrId,productId,productName,price,image) values('$cmrId','$productId','$productName','$price','$image')";
+                  $inserted_row = $this->db->insert($query);
+                  if($inserted_row){
+                                $msg = "<span class='success'>Added ! check to wlist page</span>";
+                                       return $msg;
+                             } else{
+                                    $msg = "<span class='error'>Not added</span>";
+                                    return $msg;
+                                }
+        }
+    }
+    
+    public function getWlistData($cmrId){
+        
+        $query = "select * from tbl_wlist  where cmrId='$cmrId' order by id desc";
+        $result = $this->db->select($query);
+        return $result; 
+    }
+    
+    public function delWlistData($cmrId,$productId){
+        
+         $query = "delete from tbl_wlist where cmrId = '$cmrId' and productId ='$productId'";
+         $deldata = $this->db->delete($query);
+    }
 }
     ?>

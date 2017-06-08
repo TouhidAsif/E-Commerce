@@ -25,7 +25,8 @@
                 if(isset($loginChk)){
                     echo $loginChk;
                 }
-                ?>   
+                ?>
+            </span>   
 			<div>
 				<input type="text" placeholder="Username"  name="adminUser"/>
 			</div>
@@ -35,11 +36,11 @@
 			<div>
 				<input type="submit" value="Log in" />
 			</div>
-		</form><!-- form -->
+		</form>
 		<div class="button">
-			<a href="#">Training with live project</a>
-		</div><!-- button -->
-	</section><!-- content -->
-</div><!-- container -->
+			<a href="login.php">Login page for admin</a>
+		</div>
+	</section>
+</div> 
 </body>
 </html>

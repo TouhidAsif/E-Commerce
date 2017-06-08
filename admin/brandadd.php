@@ -15,11 +15,13 @@
             <div class="box round first grid">
                 <h2>Add New Brand</h2>
                <div class="block copyblock">
+                  
                    <?php
                    if(isset($inserBrand)){
                        echo $inserBrand;
                    }
                    ?>
+                   
                  <form action="" method="post">
                     <table class="form">					
                         <tr>

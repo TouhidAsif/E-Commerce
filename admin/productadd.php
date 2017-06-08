@@ -60,6 +60,7 @@
                     <td>
                         <select id="select" name="brandId">
                             <option>Select Brand</option>
+                            
                            <?php
                             $brand = new Brand();
                             $getBrand = $brand->getAllBrand();

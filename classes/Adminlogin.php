@@ -1,7 +1,7 @@
  <?php 
          $filepath = realpath(dirname(__FILE__));
    include_once ($filepath.'/../lib/Session.php');
-   include_once '../lib/Session.php';
+   //include_once '../lib/Session.php';
       
         Session::checkLogin();
            
